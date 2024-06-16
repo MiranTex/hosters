@@ -1,0 +1,46 @@
+services:
+  # frontend:
+  #   container_name: frontend
+  #   build:
+  #     context: ./frontend
+  #   volumes:
+  #     - ./frontend:/app
+  #     # - /app/.next
+  #     - /app/node_modules
+  #   working_dir: /app
+  #   ports:
+  #     - "3000:3000"
+  #   restart: always
+  #   tty: true
+  #   depends_on:
+  #     - backend
+  #   environment:
+  #     - NODE_ENV=development
+    
+
+
+  backend:
+    container_name: hosters-backend
+    build:
+      context: ./backend
+      dockerfile: dockerfile
+      target: php
+    working_dir: /var/www
+    volumes:
+      - ./backend:/var/www
+    ports:
+      - 8000:8080
+
+  
+  # nginx:
+  #   image: nginx:latest
+  #   container_name: server
+  #   ports:
+  #     - "80:80"
+  #     - "443:443"
+  #   volumes:
+  #     - ./:/var/www
+  #     - ./nginx.conf:/etc/nginx/nginx.conf
+  #     - ./ssl:/ssl
+  #   depends_on:
+  #     - backend
