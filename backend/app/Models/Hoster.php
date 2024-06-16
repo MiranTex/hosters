@@ -102,7 +102,7 @@ class Hoster extends Model
         return [
             'model' => $this->model,
             'ram' => $this->getRamValue(),
-            'hdd' => $this->getHDDValue(),
+            'storage' => $this->getHDDValue(),
             'location' => $this->location,
             'price' => $this->getPriceValue()
         ];

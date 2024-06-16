@@ -1,21 +1,19 @@
 services:
-  # frontend:
-  #   container_name: frontend
-  #   build:
-  #     context: ./frontend
-  #   volumes:
-  #     - ./frontend:/app
-  #     # - /app/.next
-  #     - /app/node_modules
-  #   working_dir: /app
-  #   ports:
-  #     - "3000:3000"
-  #   restart: always
-  #   tty: true
-  #   depends_on:
-  #     - backend
-  #   environment:
-  #     - NODE_ENV=development
+  frontend:
+    container_name: hosters-frontend
+    build:
+      context: ./frontend
+    volumes:
+      - ./frontend:/app
+      # - /app/.next
+      - /app/node_modules
+    working_dir: /app
+    ports:
+      - "3000:3000"
+    restart: always
+    tty: true
+    environment:
+      - NODE_ENV=development
     
 
 

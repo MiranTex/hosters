@@ -28,7 +28,7 @@ class HosterTest extends TestCase
                     'model',
                     'ram',
                     'location',
-                    'hdd',
+                    'storage',
                     'price',
                 ],
             ],

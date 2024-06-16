@@ -8,15 +8,18 @@ class HostersFilter extends ApiBaseFilter
 {
     
     protected $safeParams = [
-        "ram_type" => ["eq",'in'],
-        "hddType" => ["eq"],
+        "ramType" => ["eq",'in'],
+        "ramCapacity" => ["in"],
+        "diskType" => ["eq"],
         "location" => ["eq"],
-        "storage_capacity" => ["gte","lte","gt","lt"]
+        "storage" => ["gte","lte","gt","lt"]
     ];
 
     protected $columnMap = [
-        "hddType" => "hdd_type",
-        "storage_capacity" => "hdd_capacity"
+        "diskType" => "hdd_type",
+        "storage" => "hdd_capacity",
+        "ramType" => "ram_type",
+        "ramCapacity" => "ram_capacity"
     ];
 
 

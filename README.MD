@@ -59,7 +59,7 @@ The list has this format:
                 'model',
                 'ram',
                 'location',
-                'hdd',
+                'storage',
                 'price'
             ],
         ],

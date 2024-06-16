@@ -26,16 +26,19 @@ class HostersController extends Controller
         $hostersFiltred = $hostersFilter
             ->transform($request)
             ->filter($hosters);
+
+        // dd($hostersFiltred->forPage(Paginator::resolveCurrentPage(), $perPage),);
         
         //make pagination
         $paginatedItems = new LengthAwarePaginator(
             $hostersFiltred->forPage(Paginator::resolveCurrentPage(), $perPage),
             $hostersFiltred->count(),
             $perPage,
-            Paginator::resolveCurrentPage(2),
+            null,
             ['path' => Paginator::resolveCurrentPath(),'query' => $queryParam]
         );
 
+        sleep(5);
 
         return $paginatedItems;
 
