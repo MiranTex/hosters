@@ -23,7 +23,6 @@ This documentation provides a comprehensive guide to setting up, installing, and
 - Operating System: Linux, macOS, or Windows 10/11 with WSL2
 
 ## Configuration and Installation
-
 ### Clone the Repository
 ```bash
 git clone https://github.com/MiranTex/hosters
@@ -35,6 +34,7 @@ If you want to direct access to the backend pelase expose the port 8000 in the d
 ```bash
 docker compose up -d
 ```
+And access the http://localhost:3000 in your browser.
 
 
 ## API
