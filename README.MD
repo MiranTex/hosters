@@ -48,7 +48,7 @@ IT provides the set of actual filter values that exists in the database to be re
     ]
 ```
 
-#### api/v1/hosters
+### /api/v1/hosters
 That return a list of hosters paginated, and capable to receive queryparam to perform filters.
 The list has this format:
 
@@ -56,12 +56,12 @@ The list has this format:
     [
         'data' => [
             '*' => [
-                    'model',
-                    'ram',
-                    'location',
-                    'hdd',
-                    'price',
-                ],
+                'model',
+                'ram',
+                'location',
+                'hdd',
+                'price'
+            ],
         ],
     ]
 ```
