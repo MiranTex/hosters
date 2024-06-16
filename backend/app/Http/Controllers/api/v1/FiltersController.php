@@ -13,7 +13,7 @@ class FiltersController extends Controller
 {
     //
     function index(HosterRepository $hosterRepository){
-
+        
         return Cache::remember('filters', 60*60*24, function() use ($hosterRepository){
         
 
