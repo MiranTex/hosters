@@ -16,6 +16,9 @@ php artisan view:clear
 php artisan route:clear
 php artisan key:generate
 php artisan optimize
+
+chmod -R 777 storage
+chmod -R 777 database/*.sqlite
 # npm install
 php-fpm -D
 nginx -g "daemon off;"
