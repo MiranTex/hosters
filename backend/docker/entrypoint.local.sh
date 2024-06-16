@@ -19,6 +19,14 @@ php artisan optimize
 
 chmod -R 777 storage
 chmod -R 777 database/*.sqlite
+
+if [ ! -f "storage/app/LeaseWeb_servers_filters_assignment.csv" ]; then
+    echo "Creating csv file for LeaseWeb_servers_filters_assignment"
+    cp data storage/app/LeaseWeb_servers_filters_assignment.csv
+else
+    echo "csv file exists."
+fi
+
 # npm install
 php-fpm -D
 nginx -g "daemon off;"
