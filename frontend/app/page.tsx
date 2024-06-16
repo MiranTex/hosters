@@ -47,9 +47,10 @@ export default function Home() {
     setIsLoaded(true);
 
     async function FilterServers() {
-      const serversF = (await getFilteredServers(location, disk, ramCapacity, ramType, storage, page)).data;
+      const {data,lastPage} = (await getFilteredServers(location, disk, ramCapacity, ramType, storage, page));
 
-      setServer(serversF);
+      setServer(data);
+      setTotalPage(lastPage);
     }
 
     FilterServers().then(() => { setIsLoaded(false); })
@@ -90,7 +91,7 @@ export default function Home() {
           <h3 className="px-4">Results:</h3>
           <label className="px-4 text-sm text-neutral-400" htmlFor="">All filterd results</label>
           <div className="flex w-full items-center justify-end px-4">
-            <Pagination onChange={(page) => setPage(page)} showControls total={10} initialPage={1} />
+            <Pagination onChange={(page) => setPage(page)} showControls total={totalPage} initialPage={1} />
           </div>
           {isLoaded ?
             <div className="p-4 grid grid-cols-2 lg:grid-cols-3 gap-6 mt-6" >

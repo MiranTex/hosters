@@ -57,7 +57,7 @@ export async function getFilteredServers(location: string, diskType: string, ram
     const res = await fetch(url);
     let data = await res.json();
 
-    
+    const lastPage = data.last_page
     data = data.data;
 
     //if data is object, convert it to array
@@ -69,6 +69,9 @@ export async function getFilteredServers(location: string, diskType: string, ram
     }
 
     return {
-        data
+
+        data,
+        lastPage
+
     };
 }   

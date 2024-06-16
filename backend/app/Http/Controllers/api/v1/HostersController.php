@@ -38,7 +38,6 @@ class HostersController extends Controller
             ['path' => Paginator::resolveCurrentPath(),'query' => $queryParam]
         );
 
-        sleep(5);
 
         return $paginatedItems;
 

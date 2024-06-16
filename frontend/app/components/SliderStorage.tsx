@@ -12,13 +12,13 @@ function SliderStorage({handleChange, value = [0,1000]}: {handleChange: any, val
         aria-label='storage range slider'
         // value={value}
         name='storage'
-        step={200}
+        step={1024}
         showSteps
         showTooltip
-        minValue={0}
-        maxValue={1000}
+        minValue={1024}
+        maxValue={24576}
         onChange={handleChange}
-        defaultValue={[0, 1000]}
+        defaultValue={[1024, 24576]}
         // formatOptions={{ style: 'decimal', currency: 'USD'}}
         className="max-w-md"
       />
