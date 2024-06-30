@@ -2,24 +2,44 @@
 
 namespace Tests\Feature\Hoster;
 
+use App\Models\Hoster;
+use App\Repositories\HosterRepository;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\LazyCollection;
+use Mockery\MockInterface;
 use Tests\TestCase;
 
 class HosterTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     */
+    
     public function test_end_point_exist(): void
     {
+        $hosters = LazyCollection::make(function () {
+            yield new Hoster('Dell PowerEdge R230', '16GBDDR3', '2x2TBSATA2', 'Amsterdam', '€ 59.00');
+        });
+    
+        $this->mock(HosterRepository::class, function (MockInterface $mock) use ($hosters){
+            $mock->shouldReceive('getHosters')->once()->andReturn($hosters);
+        });
+        
         $response = $this->get('api/v1/hosters');
+
 
         $response->assertStatus(200);
     }
 
     public function test_end_point_return_data(): void
     {
+        $hosters = LazyCollection::make(function () {
+            yield new Hoster('Dell PowerEdge R230', '16GBDDR3', '2x2TBSATA2', 'Amsterdam', '€ 59.00');
+        });
+
+
+        $this->mock(HosterRepository::class, function (MockInterface $mock) use ($hosters){
+            $mock->shouldReceive('getHosters')->once()->andReturn($hosters);
+        });
+
         $response = $this->get('api/v1/hosters');
 
         $response->assertJsonStructure([
@@ -35,26 +55,4 @@ class HosterTest extends TestCase
         ]);
     }
 
-    // public function test_end_point_return_data_with_filters(): void
-    // {
-    //     $perPage = 1000;
-
-    //     $response = $this->get('api/v1/hosters?ram_type[in]=DDR3&hddType[eq]=SATA2&location[like]=Amsterdam&storage_capacity[lt]=500&perPage=' . $perPage);
-    //     $response_without_filter = $this->get('api/v1/hosters?perPage=5'); 
-
-    //     //assert that the response with filters is less than the response without filters
-    //     $this->assertLessThan(count($response_without_filter->json('data')), count($response->json('data')));
-
-    //     $response->assertJsonStructure([
-    //         'data' => [
-    //             '*' => [
-    //                 'model',
-    //                 'ram',
-    //                 'location',
-    //                 'hdd',
-    //                 'price',
-    //             ],
-    //         ],
-    //     ]);
-    // }
 }
