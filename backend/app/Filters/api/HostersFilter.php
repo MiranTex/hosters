@@ -3,6 +3,7 @@
 namespace App\Filters\api;
 
 use Illuminate\Support\Collection;
+use Illuminate\Support\LazyCollection;
 
 class HostersFilter extends ApiBaseFilter
 {
@@ -23,7 +24,7 @@ class HostersFilter extends ApiBaseFilter
     ];
 
 
-    public function filter(Collection $hosters){
+    public function filter(LazyCollection $hosters){
 
         $filters = $this->filters;
 
