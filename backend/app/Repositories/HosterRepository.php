@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Models\Hoster;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\LazyCollection;
 
 class HosterRepository
 {
@@ -17,7 +18,7 @@ class HosterRepository
     }
 
 
-    public function getHosters() : Collection
+    public function getHosters(): LazyCollection
     {
         $file = Storage::get('LeaseWeb_servers_filters_assignment.csv');
 
@@ -26,18 +27,20 @@ class HosterRepository
         //remove the first row
         array_shift($csv);
 
-        $hosters = new Collection();
+        // $hosters = new Collection();
 
-        foreach ($csv as $row) {
-           
-            $hosters->push(new Hoster(
-                $row[0], 
-                $row[1], 
-                $row[2], 
-                $row[3], 
-                $row[4]
-            ));
-        }
+        $hosters = LazyCollection::make(function () use ($csv) {
+            foreach ($csv as $row) {
+                yield new Hoster(
+                    $row[0], 
+                    $row[1], 
+                    $row[2], 
+                    $row[3], 
+                    $row[4]
+                );
+            }
+        });
+
 
         return $hosters;
     }

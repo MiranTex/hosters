@@ -15,7 +15,7 @@ class Hoster extends Model
     private $location;
     private $price;
 
-    public function __construct($model, $ram, $hdd, $location, $price)
+    public function __construct(string $model,string $ram, string $hdd, string $location, string $price)
     {
         $this->model = $model;
         $this->ram = $ram;
@@ -39,7 +39,7 @@ class Hoster extends Model
     }
 
 
-    public function getRamValue(){
+    public function getRamValue(): array{
         //the ram attribute is like 16GBDDR3 and I want to get only the 16 value
         //I will use a regular expression to get the first number in the string
 
@@ -56,7 +56,7 @@ class Hoster extends Model
         return $data;
     }
 
-    public function getHDDValue(){
+    public function getHDDValue(): array{
         //the hdd attribute is like 2x2TBSATA2 or 2x500GBSATA2
         //I want to explode it in regular expression for TB or GB 
         //can be sata, sas or ssd
@@ -85,7 +85,7 @@ class Hoster extends Model
         return $data;
     }
 
-    public function getPriceValue(){
+    public function getPriceValue(): array{
         //price is in the format €1.00
         //I will remove the € sign and convert it to float
         $data = [];
@@ -96,7 +96,6 @@ class Hoster extends Model
     }
 
 
-    //toArray()
     public function toArray()
     {
         return [
@@ -108,7 +107,7 @@ class Hoster extends Model
         ];
     }
 
-    function getLocation(){
+    function getLocation(): string{
         return $this->location;
     }
 }
